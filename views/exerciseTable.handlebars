@@ -1,46 +1,5 @@
 <h1>Exercise Table</h1>
 
-<!--<script>
-function deleteRow(tableID, currentRowButton){
-
-
-	try {
-        var table = document.getElementById(tableID);
-        var rowCount = table.rows.length;
-        for (var i = 0; i < rowCount; i++) {
-            var row = table.rows[i];
-            
-            if (row==currentRowButton.parentNode.parentNode) {
-                if (rowCount <= 1) {
-                    alert("Cannot delete all the rows.");
-                    break;
-                }
-                table.deleteRow(i);
-                rowCount--;
-                i--;
-            }
-        }
-    } catch (e) {
-        alert(e);
-    }
-
-
-}
-
-function editRow(tableID, currentRowButton){
-
-	var row =  currentRowButton.parentNode.parentNode;
-	var name = row.children[1].textContent;
-	var reps = row.children[2].textContent;
-	var weight = row.children[3].textContent;
-	var date = row.children[4].textContent;
-	var lbs = row.children[5].textContent;
-	window.location.href = "/edit?name=" + name + "&reps=" + reps + "&weight=" + weight + "&date=" + date + "&lbs=" + lbs;
-	
-
-}
-</script>-->
-
 {{#if results}}
 <table id="exerciseTable">
 	<tr>
