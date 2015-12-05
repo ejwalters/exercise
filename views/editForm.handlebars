@@ -1,0 +1,29 @@
+<script>
+function saveEdit(){
+		
+	var form = document.getElementById( "editForm" );
+	
+	var id = {{id}};
+	var name = form.name.value;
+	var reps = form.reps.value;
+	var weight = form.weight.value;
+	var date = form.date.value;
+	var lbs = form.lbs.value;
+	window.location.href = "/safe-update?name=" + name + "&reps=" + reps + "&weight=" + weight + "&date=" + date + "&lbs=" + lbs ;
+	
+
+}
+</script>
+<form id="editForm">
+		<fieldset>
+			<legend>Exercise</legend>
+			
+			<p>Name: <input id="name" type="text" name="name" value="{{name}}"/></p>
+			<p>Reps: <input  id="reps" type="text" name="reps" value="{{reps}}"/></p>
+			<p>Weight: <input id="weight" type="text" name="weight" value="{{weight}}"/></p>
+			<p>Date: <input id="date" type="text" name="date" value="{{date}}" /></p>
+			<p>Lbs: <input id="lbs" type="text" name="lbs" value="{{lbs}}"/></p>
+			
+		</fieldset>
+		<input id="save" type="submit" name="update" value="Update Exercise" onclick="saveEdit()" />
+	</form>

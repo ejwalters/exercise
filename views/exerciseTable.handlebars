@@ -1,0 +1,82 @@
+<h1>Exercise Table</h1>
+<!--<script src="script.js"></script>-->
+<script>
+function deleteRow(tableID, currentRowButton){
+
+
+	try {
+        var table = document.getElementById(tableID);
+        var rowCount = table.rows.length;
+        for (var i = 0; i < rowCount; i++) {
+            var row = table.rows[i];
+            
+            if (row==currentRowButton.parentNode.parentNode) {
+                if (rowCount <= 1) {
+                    alert("Cannot delete all the rows.");
+                    break;
+                }
+                table.deleteRow(i);
+                rowCount--;
+                i--;
+            }
+        }
+    } catch (e) {
+        alert(e);
+    }
+
+
+}
+
+function editRow(tableID, currentRowButton){
+
+	var row =  currentRowButton.parentNode.parentNode;
+	var name = row.children[1].textContent;
+	var reps = row.children[2].textContent;
+	var weight = row.children[3].textContent;
+	var date = row.children[4].textContent;
+	var lbs = row.children[5].textContent;
+	window.location.href = "/edit?name=" + name + "&reps=" + reps + "&weight=" + weight + "&date=" + date + "&lbs=" + lbs;
+	
+
+}
+</script>
+
+{{#if results}}
+<table id="exerciseTable">
+	<tr>
+		<th>Name</th>
+		<th>Reps</th>
+		<th>Weight</th>
+		<th>Date</th>
+		<th>Lbs</th>
+	</tr>
+
+  {{#each results}}
+  	<tr>
+    	<input type="hidden" value="{{this.id}}">
+  		<td>{{this.name}}</td>
+  		<td>{{this.reps}}</td>
+  		<td>{{this.weight}}</td>
+  		<td>{{this.date}}</td>
+  		<td>{{this.lbs}}</td>
+  		<td><input type="button" value="Delete" onclick="deleteRow('exerciseTable', this)"></td>
+  		<td><input type="button" value="Edit" onclick="editRow('exerciseTable', this)"></td>
+	</tr>
+
+  {{/each}}
+  
+</table>
+{{/if}}
+
+<form>
+		<fieldset>
+			<legend>Exercise</legend>
+			<p>Name: <input id="name" type="text" name="name"/></p>
+			<p>Reps: <input  id="reps" type="text" name="reps"/></p>
+			<p>Weight: <input id="weight" type="text" name="weight"/></p>
+			<p>Date: <input id="date" type="text" name="date"/></p>
+			<p>Lbs: <input id="lbs" type="text" name="lbs"/></p>
+			
+		</fieldset>
+		<input id="addExercise" type="submit" name="add" value="Add Exercise" />
+</form>
