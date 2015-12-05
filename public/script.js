@@ -90,7 +90,7 @@ function addRow(){
 				newData = document.createElement("td");
 		
 				deleteButton = document.createElement("BUTTON");        
-				var deleteText = document.createTextNode("DELETE");
+				var deleteText = document.createTextNode("Delete");
 		
 				newRow.appendChild(newData);
 				newData.appendChild(deleteButton);
@@ -98,7 +98,7 @@ function addRow(){
 		
 				newData = document.createElement("td");
 				editButton = document.createElement("BUTTON");
-				var editText = document.createTextNode("EDIT");
+				var editText = document.createTextNode("Edit");
 		 
 				newRow.appendChild(newData);
 				newData.appendChild(editButton);
