@@ -1,26 +1,49 @@
 function deleteRow(tableID, currentRowButton){
-
-
-	try {
-        var table = document.getElementById(tableID);
-        var rowCount = table.rows.length;
-        for (var i = 0; i < rowCount; i++) {
-            var row = table.rows[i];
+	
+	var req = new XMLHttpRequest();
+          
+          
+          var row =  currentRowButton.parentNode.parentNode;
+		  var id = row.children[0].value;
+          
+          req.open('GET', "/delete?id=" + id , true);
+          //req.setRequestHeader('Content-Type', 'application/json');
+          req.addEventListener('load', function(){
+          	if (req.status >= 200 && req.status < 400){
+          		
+          		try {
+						var table = document.getElementById(tableID);
+						var rowCount = table.rows.length;
+						for (var i = 0; i < rowCount; i++) {
+            			var row = table.rows[i];
             
-            if (row==currentRowButton.parentNode.parentNode) {
-                if (rowCount <= 1) {
-                    alert("Cannot delete all the rows.");
-                    break;
-                }
-                table.deleteRow(i);
-                rowCount--;
-                i--;
-            }
-        }
-    } catch (e) {
-        alert(e);
-    }
+					if (row==currentRowButton.parentNode.parentNode) {
+						if (rowCount <= 1) {
+							alert("Cannot delete all the rows.");
+							break;
+						}
+						table.deleteRow(i);
+						rowCount--;
+						i--;
+						}
+					}
+				} 
+				
+				catch (e) {
+					alert(e);
+				}
 
+			
+			}
+		  else{
+				console.log("Error in network request: " + req.statusText);
+		  }});
+          
+          req.send();
+          event.preventDefault();
+}
+
+	
 
 }
 
@@ -128,40 +151,3 @@ function addRow(){
 
 
 
-document.addEventListener('DOMContentLoaded', bindButtons);
-
-function bindButtons(){
-        document.getElementById('addExercise').addEventListener('click', function(event){
-        
-          console.log("beginning");
-          var req = new XMLHttpRequest();
-          
-          // Add the form data to the ajax request
-          var payload = {name:null,reps:null,weight:null,date:null, lbs:null};
-          
-          payload.name = document.getElementById('name').value;
-          payload.reps = document.getElementById('reps').value;
-          payload.weight = document.getElementById('weight').value;
-          payload.date = document.getElementById('date').value;
-          payload.lbs = document.getElementById('lbs').value;
-          
-          req.open('POST', 'http://web.engr.oregonstate.edu/~walterer/insert', true);
-          req.setRequestHeader('Content-Type', 'application/json');
-          req.addEventListener('load', function(){
-          	if (req.status >= 200 && req.status < 400){
-          		/*
-          		var response = JSON.parse(req.responseText);
-          		document.getElementById('textOutput').textContent = response.json.name;
-          		*/
-          	}
-          else{
-          		console.log("Error in network request: " + req.statusText);
-          }});
-          
-          // POST accepts parameters in the send method
-          req.send(JSON.stringify(payload));
-          event.preventDefault();
-          
-          console.log("end");
-        });
-}
