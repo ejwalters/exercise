@@ -1,22 +1,4 @@
 
-function readInput(form){
-
-	
-	var name = form.name.value;
-	var reps = form.reps.value;
-	var weight = form.weight.value;
-	var date = form.date.value;
-	var lbs = form.lbs.value;
-
-}
-
-var collection = [ 
-    
-    {Name:"Pullup", Reps: "15" , Weight:"0", Date: "2015-10-10", Lbs: "0"},
-  	
-    
-	
-];
 
 function buildTable(array){
     
@@ -139,6 +121,14 @@ function editRow(tableID, currentRowButton){
 	var lbs = row.children[5].textContent;
 	window.location.href = "/edit?name=" + name + "&reps=" + reps + "&weight=" + weight + "&date=" + date + "&lbs=" + lbs ;
 	
+
+}
+
+function addRow(tableID){
+
+	
+	
+
 
 }
 
