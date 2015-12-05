@@ -1,5 +1,5 @@
 <script>
-function saveEdit(){
+function saveEdit(event){
 		
 	var form = document.getElementById( "editForm" );
 	
@@ -9,8 +9,10 @@ function saveEdit(){
 	var weight = form.weight.value;
 	var date = form.date.value;
 	var lbs = form.lbs.value;
+	//alert(
 	window.location.href = "/safe-update?id=" + id +"&name=" + name + "&reps=" + reps + "&weight=" + weight + "&date=" + date + "&lbs=" + lbs ;
 	
+	event.preventDefault( );
 
 }
 </script>
@@ -25,5 +27,5 @@ function saveEdit(){
 			<p>Lbs: <input id="lbs" type="text" name="lbs" value="{{lbs}}"/></p>
 			
 		</fieldset>
-		<input id="save" type="submit" name="update" value="Update Exercise" onclick="saveEdit()" />
+		<input id="save" type="submit" name="update" value="Update Exercise" onclick="saveEdit(event);" />
 	</form>
