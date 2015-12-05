@@ -1,6 +1,5 @@
 
-
-function buildTable(array){
+/*function buildTable(array){
     
     var newTable = document.createElement("table");
     newTable.id = "newTable";
@@ -74,7 +73,7 @@ function buildTable(array){
 
 return newTable; 
 }
-
+*/
 
 /*When the page is loaded the upper left, non-header cell of the table should be 'selected'. This is denoted by it having a thicker border than the other cells. If you push the directional buttons other cells should be selected instead. So if you press the right button, cell 1,1 should no longer be selected and 2,1 should be selected instead.
 
