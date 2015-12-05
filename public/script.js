@@ -43,9 +43,6 @@ function deleteRow(tableID, currentRowButton){
           event.preventDefault();
 }
 
-	
-
-}
 
 function editRow(tableID, currentRowButton){
 
