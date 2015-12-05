@@ -82,12 +82,14 @@ app.get('/edit', function(req,res,next){
 	
 	var context = {};
 	
+	var id = req.query.id;
 	var name = req.query.name;
 	var reps = req.query.reps;
 	var weight = req.query.weight;
 	var date = req.query.date;
 	var lbs = req.query.lbs;
 	
+	context.id = id;
 	context.name = name;
 	context.reps = reps;
 	context.weight = weight;

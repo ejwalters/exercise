@@ -27,12 +27,13 @@ function deleteRow(tableID, currentRowButton){
 function editRow(tableID, currentRowButton){
 
 	var row =  currentRowButton.parentNode.parentNode;
+	var id = row.children[0].value;
 	var name = row.children[1].textContent;
 	var reps = row.children[2].textContent;
 	var weight = row.children[3].textContent;
 	var date = row.children[4].textContent;
 	var lbs = row.children[5].textContent;
-	window.location.href = "/edit?name=" + name + "&reps=" + reps + "&weight=" + weight + "&date=" + date + "&lbs=" + lbs ;
+	window.location.href = "/edit?id=" + id + "&name=" + name + "&reps=" + reps + "&weight=" + weight + "&date=" + date + "&lbs=" + lbs ;
 	
 
 }
