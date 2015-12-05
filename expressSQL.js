@@ -61,7 +61,7 @@ app.get('/insert',function(req,res,next){
       return;
     }
     context.results = "Inserted id " + result.insertId;
-    res.render('home',context);
+    res.render('exerciseTable',context);
   });
 });
 

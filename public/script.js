@@ -38,13 +38,95 @@ function editRow(tableID, currentRowButton){
 
 }
 
-function addRow(tableID){
+function addRow(){
 
+	var form = document.getElementById("exerciseForm");
 	
-	
-
-
+	var req = new XMLHttpRequest();
+          
+          // Add the form data to the ajax request
+          var queryString = "";
+          
+          var name = form.name.value;
+          var reps = form.reps.value;
+          var weight = form.weight.value;
+          var date = form.date.value;
+          var lbs = form.lbs.value;
+          
+          queryString += "name=" + name + "&";
+          queryString += "reps=" + reps + "&";
+          queryString += "weight=" + weight + "&";
+          queryString += "date=" + date + "&";
+          queryString += "lbs=" + lbs;
+          
+          req.open('GET', '/insert?' + queryString, true);
+          //req.setRequestHeader('Content-Type', 'application/json');
+          req.addEventListener('load', function(){
+          	if (req.status >= 200 && req.status < 400){
+          		
+          		var table = document.getElementById("exerciseTable")
+          		var newRow = document.createElement("tr");
+          		
+				newData = document.createElement("td");
+				newData.textContent = name;
+				newRow.appendChild(newData);
+				
+				newData = document.createElement("td");
+				newData.textContent = reps;
+				newRow.appendChild(newData);
+				
+				newData = document.createElement("td");
+				newData.textContent = weight;
+				newRow.appendChild(newData);
+				
+				newData = document.createElement("td");
+				newData.textContent = date;
+				newRow.appendChild(newData);
+				
+				newData = document.createElement("td");
+				newData.textContent = lbs;
+				newRow.appendChild(newData);
+		
+				newData = document.createElement("td");
+		
+				deleteButton = document.createElement("BUTTON");        
+				var deleteText = document.createTextNode("DELETE");
+		
+				newRow.appendChild(newData);
+				newData.appendChild(deleteButton);
+				deleteButton.appendChild(deleteText); 
+		
+				newData = document.createElement("td");
+				editButton = document.createElement("BUTTON");
+				var editText = document.createTextNode("EDIT");
+		 
+				newRow.appendChild(newData);
+				newData.appendChild(editButton);
+				editButton.appendChild(editText);
+		
+				deleteButton.onclick = function( ){
+			
+					deleteRow( "newTable", this );
+				};
+				editButton.onclick = function( ){
+			
+					editRow( "newTable", this );
+				};
+		
+							 
+				table.appendChild(newRow);
+		
+          		
+          	}
+          else{
+          		console.log("Error in network request: " + req.statusText);
+          }});
+          
+          req.send();
+          event.preventDefault();
 }
+
+
 
 document.addEventListener('DOMContentLoaded', bindButtons);
 
